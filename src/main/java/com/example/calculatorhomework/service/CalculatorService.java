@@ -1,13 +1,28 @@
 package com.example.calculatorhomework.service;
 
-public interface CalculatorService {
+import com.example.calculatorhomework.exception.DivideByZeroException;
+import org.springframework.stereotype.Service;
 
-    public int plus (Integer a, Integer b);
-    public int minus (Integer a, Integer b);
-    public int multiplication (Integer a, Integer b);
-    public double division (Integer a, Integer b);
+@Service
+public class CalculatorService {
 
-    public int divisionWithoutRemainder(Integer a, Integer b);
+    public Number plus (Integer a, Integer b) {
+        return a + b;
+    }
 
+    public Number minus (Integer a, Integer b) {
+        return a - b;
+    }
+
+    public Number multiplication (Integer a, Integer b) {
+        return a * b;
+    }
+
+    public Number division (Integer a, Integer b) {
+        if (b == 0) {
+            throw new DivideByZeroException("На ноль делить нельзя!");
+        }
+        return a.doubleValue()/b;
+    }
 
 }
